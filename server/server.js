@@ -1,5 +1,6 @@
 require("dotenv").config()
 const express = require("express")
+const db = require("./db")
 const morgan = require('morgan')
 
 
@@ -8,12 +9,19 @@ const app = express()
 
 app.use (express.json())
 
-app.get("/api/getPosts", (req,res) => {
-    res.status(200).json({
-        status: "success",
-        data:{ post: ["Post 1", "Post 2", "Post 3"] }
-        
-    })
+app.get("/api/getPosts", async (req,res) => {
+    try {
+        const results = await db.query("select * from posts")
+        console.log(results);
+        res.status(200).json({
+            status: "success",
+            results: results.rows.length,
+            data:{ posts: results.rows, }        
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    
 })
 
 app.get("/api/posts/:id", (req,res) => {
