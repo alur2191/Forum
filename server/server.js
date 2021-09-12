@@ -9,7 +9,7 @@ const app = express()
 
 app.use (express.json())
 
-app.get("/api/getPosts", async (req,res) => {
+app.get("/api/posts", async (req,res) => {
     try {
         const results = await db.query("select * from posts")
         console.log(results);
@@ -24,41 +24,65 @@ app.get("/api/getPosts", async (req,res) => {
     
 })
 
-app.get("/api/posts/:id", (req,res) => {
-    console.log(req.params);
-    res.status(200).json({
-        status: "success",
-        data: {
-            post: "Post 3"
-        }
-    })
+app.get("/api/posts/:id", async (req,res) => {
+    try {
+        const results = await db.query(`select * from posts where id = $1`, [req.params.id])
+        console.log(results.rows[0]);
+        res.status(200).json({
+            status: "success",
+            data:{ posts: results.rows[0] }     
+        })
+    } catch (err) {
+        
+    }
+    
 })
 
-app.post("/api/posts", (req,res)=> {
+app.post("/api/posts", async (req,res)=> {
     console.log(req.body);
-    res.status(201).json({
-        status: "success",
-        data: {
-            post: "Post 3"
-        }
-    })
+
+    try {
+        const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,$5) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id,req.body.created_at])
+        console.log(results.rows[0]);
+        res.status(201).json({
+            status: "success",
+            data: {
+                posts: results.rows[0]
+            }
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    
 })
 
-app.put("/api/posts/:id", (req,res) => {
+app.put("/api/posts/:id", async (req,res) => {
+
+    try {
+        const results = await db.query("UPDATE posts SET body = $1 where id = $2 returning *", [req.body.body,req.params.id])
+        res.status(200).json({
+            status: "success",
+            data: {
+                posts: results.rows[0]
+            }
+        })
+    } catch (err) {
+        
+    }
     console.log(req.params.id);
     console.log(req.body);
-    res.status(200).json({
-        status: "success",
-        data: {
-            post: "Post 3"
-        }
-    })
+    
 })
 
-app.delete("/api/posts/:id", (req,res) => {
-    res.status(204).json({
-        status:"success"
-    })
+app.delete("/api/posts/:id", async (req,res) => {
+    try {
+        const results =  db.query("DELETE FROM posts where id = $1", [req.params.id])
+        res.status(204).json({
+            status:"success"
+        })
+    } catch (err) {
+        console.log(err);
+    }
 })
 const port = process.env.PORT || 3004
 
