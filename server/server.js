@@ -1,13 +1,19 @@
 require("dotenv").config()
 const express = require("express")
+const cors = require('cors')
 const db = require("./db")
 const morgan = require('morgan')
 
 
 const app = express()
 
+var corsOptions = {
+    origin: "http://localhost:3000",
+    optionsSuccessStatus: 200
+};
 
 app.use (express.json())
+app.use(cors(corsOptions))
 
 app.get("/api/posts", async (req,res) => {
     try {
@@ -40,7 +46,7 @@ app.get("/api/posts/:id", async (req,res) => {
 
 app.post("/api/posts", async (req,res)=> {
     console.log(req.body);
-
+    console.log('running');
     try {
         const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,$5) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id,req.body.created_at])
         console.log(results.rows[0]);
