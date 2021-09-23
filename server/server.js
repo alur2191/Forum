@@ -8,7 +8,7 @@ const morgan = require('morgan')
 const app = express()
 
 var corsOptions = {
-    origin: "http://localhost:3000",
+    origin: true,
     optionsSuccessStatus: 200
 };
 

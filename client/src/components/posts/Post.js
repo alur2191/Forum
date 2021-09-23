@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 
-export default function Post() {
+export default function Post({post: {title,body}}) {
     useEffect(()=> {
         const fetchData = async () => {
             try {
@@ -14,7 +14,8 @@ export default function Post() {
     },[])
     return (
         <div>
-            <h1>Post</h1>
+            <h3>{title}</h3>
+            <p>{body}</p>
         </div>
     )
 }

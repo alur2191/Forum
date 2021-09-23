@@ -18,8 +18,6 @@ export default function AddPost() {
                 category_id: 1,
                 created_at: '2021-09-11 01:07:30.815655'
             });
-            console.log();
-            console.log(response.data.data);
             addPost(response.data.data.post);
         } catch (err) {
             console.log(err);
@@ -32,7 +30,7 @@ export default function AddPost() {
                     <input value={title} type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
                 </div>
                 <div>
-                    <input value={body} type="text" placeholder="Body" onChange={(e) => setBody(e.target.value)}/>
+                    <textarea value={body} type="text" placeholder="Body" onChange={(e) => setBody(e.target.value)}/>
                 </div>
                 <button
                     onClick={handleSubmit}

@@ -1,11 +1,16 @@
-import React, {useEffect} from 'react'
+import React, {Fragment,useEffect} from 'react';
+import api from '../../api/api'
+import { connect } from 'react-redux'
+import { getPosts } from '../../actions/post';
+import Post from './Post'
 
-export default function Posts() {
+const Posts = ({ getPosts, post: { posts } }) => {
     useEffect(()=> {
         const fetchData = async () => {
             try {
-                //const res = await api.get("/")
-                //console.log(res);
+                const res = await api.get("/posts")
+                console.log(res.data.data.posts);
+                getPosts(res.data.data.posts);
             }catch(err){
                 console.log(err);
             }
@@ -13,8 +18,18 @@ export default function Posts() {
         fetchData()
     },[])
     return (
-        <div>
-            <h1>Posts</h1>
-        </div>
+        <Fragment>
+            <div >
+                {posts.map((post) => (
+                    <Post key={post.id} post={post} />
+                ))}
+            </div>
+        </Fragment>
     )
 }
+
+const mapStateToProps = (state) => ({
+    post: state.post
+});
+
+export default connect(mapStateToProps, { getPosts })(Posts);

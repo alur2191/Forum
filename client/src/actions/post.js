@@ -12,7 +12,7 @@ export const getPosts = (resData) => async dispatch => {
     try {
         dispatch({
         type: GET_POSTS,
-        payload: resData.data
+        payload: resData
         });
     } catch (err) {
         dispatch({
@@ -45,7 +45,7 @@ export const addPost = resData => async dispatch => {
     try {        
         dispatch({
         type: ADD_POST,
-        payload: resData.data
+        payload: resData
         });
 
         
@@ -62,7 +62,7 @@ export const getPost = (id,resData) => async dispatch => {
     try {
         dispatch({
         type: GET_POST,
-        payload: resData.data
+        payload: resData
         });
     } catch (err) {
         dispatch({
