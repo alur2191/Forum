@@ -1,19 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500&display=swap');
 
+:root {
+    --primary-bg-color: #fbfcff;
+    --primary-border: 1px solid #e4e8ff;
+}
+
+html {
+    font-size: 14px;
+}
 body {
     box-sizing: border-box;
     margin: 0;
     font-weight: 300;
     background-color: #f8f9ff;
+    letter-spacing: 0.5px;
+    line-height: 18px;
 }
 
 * {
     font-family: 'Roboto', sans-serif;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+h2 {
+    font-size: 1.4rem;
+}
+h3 {
+    font-size: 1.3rem;
+}
+h4 {
+    font-size: 1.2rem;
+}
+h5 {
+    font-size: 1.1rem;
+}
+h6 {
+    font-size: 1rem;
+}
 h1,h2,h3,h4,h5,h6 {
     font-weight: normal;
     margin: 0;
+}
+
+p {
+    margin: 5px 0px;
+}
+
+input {
+    padding: 8px 8px;
+}
+
+input, textarea {
+    border:1px solid #e4e8ff;
+    background-color: #f9faff;
+    border-radius: 3px;
+}
+
+
+button, input[type="submit"] {
+    padding: 5px 15px;
+    border:1px solid #7187ff;
+    color: #7187ff;
+    border-radius: 3px;
 }
 
 /* Utility */
@@ -32,12 +87,37 @@ h1,h2,h3,h4,h5,h6 {
 .layout {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 1fr 350px;
+    grid-template-columns: 1fr 300px;
+    grid-gap: 20px;
+}
+.login > form > .form-group {
+    display: grid;
+    grid-template-columns: 1fr;
+
 }
 
-.full-height {
-    height: 100vh;
-    background-color: grey;
+.sidebar > div {
+    background-color: #fbfcff;
+    padding:10px 25px;
+    border: var(--primary-border);
+    border-radius: 3px;
+    margin-bottom: 15px;
+}
+
+.sidebar > div:last-child {
+    margin-bottom: 0px;
+}
+
+.sidebar > div > h6 {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    background-color: #F0F2FF;
+    padding: 5px 0px;
+} 
+
+.form-group {
+    margin-bottom: 10px;
 }
 
 .nav {
@@ -47,7 +127,8 @@ h1,h2,h3,h4,h5,h6 {
     height: 60px;
     align-items: center;
     padding: 0 20px;
-    border-bottom: 1px solid #e4e8ff;
+    border-bottom: var(--primary-border)
+    
 }
 
 .nav > ul {
@@ -64,4 +145,42 @@ h1,h2,h3,h4,h5,h6 {
 .nav > ul > li > a {
     color: black;
     text-decoration: none;
+}
+
+.main-body {
+    background-color: #fbfcff;
+    padding: 10px;
+    border: var(--primary-border);
+    border-radius: 3px;
+
+}
+
+.post {
+    margin-bottom: 10px;
+}
+
+.post:last-child {
+    margin-bottom: 0px;
+}
+
+
+.post > div:last-child> div > a {
+    margin-right: 10px;
+    font-weight: 400;
+    color: #4c4d52;
+}
+
+.post > div:last-child> div > a:last-child {
+    margin-right: 0px;
+}
+
+.category-description  > div {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.category-description > div > div {
+    display: flex;
+    flex-direction: column;
 }

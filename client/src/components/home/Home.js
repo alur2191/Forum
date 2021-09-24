@@ -1,14 +1,15 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import Posts from '../posts/Posts'
 import Login from '../auth/Login'
+import PopularPosts from '../popular/PopularPosts'
 
 export default function Home() {
     return (
-        <div className="container layout">
+        <Fragment>
             <div>
                 <Posts />
             </div>
-            <div><Login /></div>
-        </div>
+            <div  className="sidebar"><Login /><PopularPosts/></div>
+        </Fragment>
     )
 }

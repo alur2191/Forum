@@ -1,33 +1,36 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 export default function Login() {
     return (
-        <Fragment>
-            <p>
+        <div className="login">
+            <h6>
                 Sign In
-            </p>
+            </h6>
             <form className="form" >
                 <div className="form-group">
-                <input
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    required
-                />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        required
+                    />
                 </div>
                 <div className="form-group">
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    minLength="6"
-                />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        minLength="6"
+                    />
                 </div>
-                <input type="submit" value="Login" />
+                <div style={{ display:'flex', alignItems:'center', gap: 10, justifyContent:'flex-end'}}>
+                    <span>
+                        <Link to="/">Don't have an account?</Link>
+                    </span>
+                    <input type="submit" value="Login" />
+                </div>
             </form>
-            <p>
-                <Link to="/">Sign Up</Link>
-            </p>
-        </Fragment>
+            
+        </div>
     )
 }

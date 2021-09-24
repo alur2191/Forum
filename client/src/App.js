@@ -16,9 +16,10 @@ const App = () => (
         <Nav />
         <Fragment>
           <Switch>
-            <Route exact path="/" component={Home}  />
-            <Route component={Routes} />
-          
+            <div className="container layout">
+              <Route exact path="/" component={Home}  />
+              <Route component={Routes} />
+            </div>
           </Switch>
         </Fragment>
       </Router>

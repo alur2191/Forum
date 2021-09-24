@@ -58,7 +58,7 @@ export const addPost = resData => async dispatch => {
 };
 
 // Get post
-export const getPost = (id,resData) => async dispatch => {
+export const getPost = (resData) => async dispatch => {
     try {
         dispatch({
         type: GET_POST,

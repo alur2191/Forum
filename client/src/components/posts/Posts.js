@@ -2,7 +2,7 @@ import React, {Fragment,useEffect} from 'react';
 import api from '../../api/api'
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/post';
-import Post from './Post'
+import PostItem from './PostItem'
 
 const Posts = ({ getPosts, post: { posts } }) => {
     useEffect(()=> {
@@ -21,7 +21,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
         <Fragment>
             <div >
                 {posts.map((post) => (
-                    <Post key={post.id} post={post} />
+                    <PostItem key={post.id} post={post} />
                 ))}
             </div>
         </Fragment>
