@@ -48,7 +48,7 @@ app.post("/api/posts", async (req,res)=> {
     console.log(req.body);
     console.log('running');
     try {
-        const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,$5) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id,req.body.created_at])
+        const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,CURRENT_TIMESTAMP) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id])
         console.log(results.rows[0]);
         res.status(201).json({
             status: "success",

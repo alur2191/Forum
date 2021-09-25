@@ -1,7 +1,7 @@
 import {Fragment} from 'react'
 import { Switch,Route } from 'react-router';
-import AddPost from '../posts/AddPost'
-import EditPost from "../posts/EditPost"
+import AddPost from '../post/AddPost'
+import EditPost from "../post/EditPost"
 import Post from "../post/Post"
 
 const Routes = () => {

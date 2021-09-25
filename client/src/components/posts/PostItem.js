@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import { ArrowUp,ArrowDown } from 'react-feather';
 
-export default function PostItem({post: {id,title,body}}) {
+export default function PostItem({post: {id,title,body,created_at}}) {
     
     return (
         <div className="post main-body" style={{display:'grid', gridTemplateColumns:'40px 1fr', gridGap:'10px'}}>
@@ -13,10 +13,11 @@ export default function PostItem({post: {id,title,body}}) {
                 <ArrowDown/>
             </div>
             <div>
-                <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • 4 hours ago</div>
+                <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • {created_at}</div>
                     <h3><Link to={`/posts/${id}`}>{title}</Link></h3>
                     <p>{body}</p>
                     <div>
+                        
                         <a>Comments</a>
                         <a>Share</a>
                         <a>Save</a>

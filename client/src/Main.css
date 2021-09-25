@@ -181,6 +181,21 @@ button, input[type="submit"] {
     margin-right: 0px;
 }
 
+.add-post > div > input,textarea {
+    display: flex;
+    width: 97%;
+    padding: 5px 10px;
+}
+
+.add-post > div > textarea {
+    min-height: 100px;
+}
+
+.add-post > div  {
+    margin-bottom: 15px;
+}
+
+
 .category-description  > div {
     display: flex;
     justify-content: space-around;
@@ -194,7 +209,7 @@ button, input[type="submit"] {
     align-items: center;
 }
 
-.comment-buttons {
+.textarea-buttons {
     display: flex;
     justify-content: space-between;
     background-color: #e4e8ff;
@@ -204,7 +219,7 @@ button, input[type="submit"] {
     border-bottom-right-radius: 3px;
 }
 
-.comment-buttons > div > svg {
+.textarea-buttons > div > svg {
     height: 20px;
     background-color: #f0f2ff;
     padding: 3px;
@@ -212,11 +227,11 @@ button, input[type="submit"] {
     margin-right: 5px;
 }
 
-.comment-buttons > div > svg:last-child {
+.textarea-buttons > div > svg:last-child {
     margin-right: 0px;
 }
 
-.comment-buttons > input {
+.textarea-buttons > input {
     color: #f9faff;
     background-color: #7187ff;
 }

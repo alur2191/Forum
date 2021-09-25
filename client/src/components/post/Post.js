@@ -53,7 +53,7 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                         <ArrowDown/>
                     </div>
                     <div>
-                        <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • 4 hours ago</div>
+                        <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • {post.created_at}</div>
                             <h3><Link to={`/posts/${id}`}>{post.title}</Link></h3>
                             {edit ? <textarea style={{width:"98%",}} value={postBody} onChange={(e) => {setPostBody(e.target.value)}}/> : <p>{post.body}</p>}
                             {edit ? <div style={{display:'flex', justifyContent:'flex-end'}}><button style={{color:'black',backgroundColor:'transparent ',border:'none'}} onClick={toggleEdit}>Cancel</button> <input type="submit" value="Edit" onClick={post.body === postBody ? toggleEdit :handleSubmit}/></div>:
@@ -67,7 +67,7 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                 </div>
                 <form >
                     <textarea style={{display: 'flex', minHeight: 80,  width:'100%',padding:0, height: 120,borderBottomLeftRadius:0, borderBottomRightRadius:0}} name="comment-textarea" id="comment-textarea"></textarea>
-                    <div className="comment-buttons">
+                    <div className="textarea-buttons">
                         <div>
                             <Bold />
                             <Italic />
