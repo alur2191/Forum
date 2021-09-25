@@ -2,7 +2,7 @@ import React, {Fragment,useEffect} from 'react';
 import api from '../../api/api'
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/post';
-import PostItem from './PostItem'
+import PostItem from '../posts/PostItem'
 
 const Category = ({ getPosts, post: { posts } }) => {
     useEffect(()=> {

@@ -1,5 +1,6 @@
-import React, {useEffect,Fragment} from 'react'
-import { useParams, Link} from "react-router-dom";
+import React, {useEffect,Fragment, useState} from 'react'
+
+import { useParams, useHistory, Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import { getPost } from '../../actions/post';
 import Description from '../category/Description'
@@ -9,7 +10,11 @@ import { Bold, Italic, Link as LinkIcon, Code} from 'react-feather';
 import api from '../../api/api'
 
 const Post = ({ getPost, post: { post,loading  } }) => {
+    const [edit,setEdit] = useState(false)
+    const [postBody,setPostBody] = useState('')
+    let history = useHistory();
     const { id } = useParams();
+
     useEffect(()=> {
         const fetchData = async () => {
             try {
@@ -21,6 +26,20 @@ const Post = ({ getPost, post: { post,loading  } }) => {
         }
         fetchData()
     },[id])
+
+    const toggleEdit = () => {
+        edit === false ? setPostBody(post.body) : setPostBody('')
+        setEdit(!edit)
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const updatePost = await api.put(`/posts/${id}`, {
+            body: postBody
+        });
+        history.go(0)
+    };
+
     return loading || post === null ? (
         <span>LOADING</span>
     ) : (
@@ -36,12 +55,14 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                     <div>
                         <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • 4 hours ago</div>
                             <h3><Link to={`/posts/${id}`}>{post.title}</Link></h3>
-                            <p>{post.body}</p>
+                            {edit ? <textarea style={{width:"98%",}} value={postBody} onChange={(e) => {setPostBody(e.target.value)}}/> : <p>{post.body}</p>}
+                            {edit ? <div style={{display:'flex', justifyContent:'flex-end'}}><button style={{color:'black',backgroundColor:'transparent ',border:'none'}} onClick={toggleEdit}>Cancel</button> <input type="submit" value="Edit" onClick={post.body === postBody ? toggleEdit :handleSubmit}/></div>:
                             <div>
                                 <a>Comments</a>
                                 <a>Share</a>
                                 <a>Save</a>
-                            </div>
+                                <a onClick={toggleEdit}>Edit</a>
+                            </div>}
                     </div>
                 </div>
                 <form >
