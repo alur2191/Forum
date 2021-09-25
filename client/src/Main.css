@@ -14,7 +14,7 @@ body {
     font-weight: 300;
     background-color: #f8f9ff;
     letter-spacing: 0.5px;
-    line-height: 18px;
+    
 }
 
 * {
@@ -51,10 +51,16 @@ h1,h2,h3,h4,h5,h6 {
 
 p {
     margin: 5px 0px;
+    line-height: 18px;
 }
+
 
 input {
     padding: 8px 8px;
+}
+
+textarea {
+    resize:vertical;
 }
 
 input, textarea {
@@ -152,7 +158,6 @@ button, input[type="submit"] {
     padding: 10px;
     border: var(--primary-border);
     border-radius: 3px;
-
 }
 
 .post {
@@ -177,10 +182,39 @@ button, input[type="submit"] {
 .category-description  > div {
     display: flex;
     justify-content: space-around;
+    
     margin: 20px 0;
 }
 
 .category-description > div > div {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+.comment-buttons {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e4e8ff;
+    padding: 5px 15px;
+    border: var(--primary-border);
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.comment-buttons > div > svg {
+    height: 20px;
+    background-color: #f0f2ff;
+    padding: 3px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
+
+.comment-buttons > div > svg:last-child {
+    margin-right: 0px;
+}
+
+.comment-buttons > input {
+    color: #f9faff;
+    background-color: #7187ff;
 }
