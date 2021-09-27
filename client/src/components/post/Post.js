@@ -66,7 +66,7 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                     </div>
                 </div>
                 <form >
-                    <textarea style={{display: 'flex', minHeight: 80,  width:'100%',padding:0, height: 120,borderBottomLeftRadius:0, borderBottomRightRadius:0}} name="comment-textarea" id="comment-textarea"></textarea>
+                    <textarea style={{display: 'flex', minHeight: 80,  padding:0, height: 120,borderBottomLeftRadius:0, borderBottomRightRadius:0, width: '100%'}} name="comment-textarea" ></textarea>
                     <div className="textarea-buttons">
                         <div>
                             <Bold />

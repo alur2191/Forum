@@ -47,6 +47,7 @@ export default function AddPost() {
                         onClick={handleSubmit}
                         type="submit"
                         className="btn btn-primary"
+                        style={{width:80}}
                         >
                         Post
                     </button></div>

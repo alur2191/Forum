@@ -183,7 +183,6 @@ button, input[type="submit"] {
 
 .add-post > div > input,textarea {
     display: flex;
-    width: 97%;
     padding: 5px 10px;
 }
 
@@ -193,6 +192,8 @@ button, input[type="submit"] {
 
 .add-post > div  {
     margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
 }
 
 

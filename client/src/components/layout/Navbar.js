@@ -7,7 +7,7 @@ export default function Header() {
         
         <div className="nav">
             <div className="container">
-                <div style={{display:'flex', alignItems:'center'}}><Globe style={{marginRight:5}}/><span className="logo">Forum</span></div>
+                <Link className="logo" to="/" style={{display:'flex', alignItems:'center'}}><Globe style={{marginRight:5}}/>Forum</Link>
                 <ul style={{display:'flex', alignItems:'center'}}>
                     <li><Search style={{width: 15}}/></li>
                     <li><Link to="/">Home</Link></li>
