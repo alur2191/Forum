@@ -9,7 +9,7 @@ const auth = require('../../middleware/auth')
 
 // @route    POST api/auth/register
 // @desc     Register user
-// @access   
+// @access   Public
 
 router.post("/register", validation, async (req,res) => {
     try {
@@ -20,7 +20,7 @@ router.post("/register", validation, async (req,res) => {
         if (user.rows.length !== 0) {
             return res.status(401).send("User exists")
         }
-
+        
         const saltRound = 10;
         const salt = await bcrypt.genSalt(saltRound)
         const bcryptPassword = await bcrypt.hash(user_password,salt)
@@ -43,12 +43,11 @@ router.post("/register", validation, async (req,res) => {
 
 // @route    POST api/auth/login
 // @desc     Login
-// @access   
+// @access   Public
 
 router.post("/login", validation, async (req,res) => {
     try {
         const {user_email,user_password} = req.body;
-
         const user = await db.query("SELECT * FROM users WHERE user_email = $1", [user_email])
         
         if (user.rows.length === 0) {
@@ -62,16 +61,12 @@ router.post("/login", validation, async (req,res) => {
         }
 
         const token = jwtGenerator(user.rows[0].user_id)
-
+        
         res.json({token})
     } catch (err) {
-        console.log(err.message);
         res.status(500).send("Server Error")
     }
 })
-
-module.exports = router;
-
 
 router.get("/verify", auth, async (req,res) => {
     try {
@@ -81,21 +76,5 @@ router.get("/verify", auth, async (req,res) => {
         res.status(500).send("Server Error")
     }
 })
-
-
-router.get("/authorize", auth, async (req, res) => {
-    try {
-        console.log(`TEST:${req.user}`);
-        const user = await db.query(
-        "SELECT user_name FROM users WHERE user_id = $1",
-        [req.user] 
-        
-        ); 
-        res.json(user.rows[0]);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send("Server error");
-    }
-});
 
 module.exports = router;

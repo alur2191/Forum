@@ -8,7 +8,7 @@ export default function AddPost() {
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
     
-    const handleSubmit = async (e) => {
+    const onSubmit = async (e) => {
         e.preventDefault();
         try {
             
@@ -44,7 +44,7 @@ export default function AddPost() {
                         </div>
                     </div>
                     <div style={{display:'flex',justifyContent:'flex-end'}}><button
-                        onClick={handleSubmit}
+                        onClick={onSubmit}
                         type="submit"
                         className="btn btn-primary"
                         style={{width:80}}

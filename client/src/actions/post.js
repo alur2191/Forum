@@ -8,11 +8,11 @@ import {
 } from './types';
 
 // Get posts
-export const getPosts = (resData) => async dispatch => {
+export const getPosts = (data) => async dispatch => {
     try {
         dispatch({
         type: GET_POSTS,
-        payload: resData
+        payload: data
         });
     } catch (err) {
         dispatch({
@@ -41,11 +41,11 @@ export const deletePost = id => async dispatch => {
 };
 
 // Add post
-export const addPost = resData => async dispatch => {
+export const addPost = data => async dispatch => {
     try {        
         dispatch({
         type: ADD_POST,
-        payload: resData
+        payload: data
         });
 
         
@@ -58,11 +58,11 @@ export const addPost = resData => async dispatch => {
 };
 
 // Get post
-export const getPost = (resData) => async dispatch => {
+export const getPost = (data) => async dispatch => {
     try {
         dispatch({
         type: GET_POST,
-        payload: resData
+        payload: data
         });
     } catch (err) {
         dispatch({

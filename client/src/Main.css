@@ -8,6 +8,7 @@
 html {
     font-size: 14px;
 }
+
 body {
     box-sizing: border-box;
     margin: 0;
@@ -21,10 +22,8 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-a {
-    text-decoration: none;
-    color: black;
-}
+
+
 
 h1 {
     font-size: 1.5rem;
@@ -52,6 +51,10 @@ h1,h2,h3,h4,h5,h6 {
 p {
     margin: 5px 0px;
     line-height: 18px;
+}
+a {
+    text-decoration: none;
+    color: black;
 }
 
 

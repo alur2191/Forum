@@ -1,17 +1,39 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { connect } from 'react-redux'
 import {Link} from 'react-router-dom'
-export default function Login() {
+import {signIn} from '../../actions/auth' 
+
+
+const Login = ({signIn}) => {
+    const [inputs, setInputs] = useState({
+        email: "",
+        password: ""
+    });
+    
+    const { email, password } = inputs;
+
+    const onChange = e =>
+        setInputs({ ...inputs, [e.target.name]: e.target.value });
+
+    const onSubmitForm = e => {
+        e.preventDefault();
+        console.log('clicked');
+        signIn(email,password)
+    };
+
     return (
         <div className="login">
             <h6>
                 Sign In
             </h6>
-            <form className="form" >
+            <form onSubmit={onSubmitForm}>
                 <div className="form-group">
                     <input
                         type="email"
                         placeholder="Email"
                         name="email"
+                        value={email}
+                        onChange={e => onChange(e)}
                         required
                     />
                 </div>
@@ -20,6 +42,8 @@ export default function Login() {
                         type="password"
                         placeholder="Password"
                         name="password"
+                        value={password}
+                        onChange={e => onChange(e)}
                         minLength="6"
                     />
                 </div>
@@ -34,3 +58,9 @@ export default function Login() {
         </div>
     )
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth
+});
+
+export default connect(mapStateToProps, { signIn })(Login);

@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react'
 import Posts from '../posts/Posts'
 import Login from '../auth/Login'
+import Register from '../auth/Register'
 import PopularPosts from '../popular/PopularPosts'
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
             <div>
                 <Posts />
             </div>
-            <div  className="sidebar"><Login /><PopularPosts/></div>
+            <div  className="sidebar"><Login /><Register/><PopularPosts/></div>
         </Fragment>
     )
 }
