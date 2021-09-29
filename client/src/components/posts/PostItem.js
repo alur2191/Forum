@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import { ArrowUp,ArrowDown } from 'react-feather';
 
@@ -18,9 +18,9 @@ export default function PostItem({post: {id,title,body,created_at}}) {
                     <p>{body}</p>
                     <div>
                         
-                        <a>Comments</a>
-                        <a>Share</a>
-                        <a>Save</a>
+                        <Link to={'/'}>Comments</Link>
+                        <Link to={'/'}>Share</Link>
+                        <Link to={'/'}>Save</Link>
                     </div>
             </div>
         </div>

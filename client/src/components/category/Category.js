@@ -9,7 +9,6 @@ const Category = ({ getPosts, post: { posts } }) => {
         const fetchData = async () => {
             try {
                 const res = await api.get("/posts")
-                console.log(res.data.data.posts);
                 getPosts(res.data.data.posts);
             }catch(err){
                 console.log(err);

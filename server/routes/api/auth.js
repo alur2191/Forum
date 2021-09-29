@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db')
 const bcrypt = require("bcrypt")
-const jwtGenerator = require("../../utils/token")
+const jwtGenerator = require("../../utils/jwtGenerator")
 const validation = require('../../middleware/validation')
 const auth = require('../../middleware/auth')
 
@@ -68,13 +68,18 @@ router.post("/login", validation, async (req,res) => {
     }
 })
 
-router.get("/verify", auth, async (req,res) => {
+// @route    POST api/auth/login
+// @desc     Get user with token
+// @access   Public
+
+router.get("/user", auth, async (req,res) => {
     try {
-        res.json(true)
+        const profile = await db.query("select user_name, user_email from users where user_id = $1", [req.user.id])
+        //res.json(user)
     } catch (err) {
-        console.log(err.message);
         res.status(500).send("Server Error")
     }
 })
+
 
 module.exports = router;

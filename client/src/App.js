@@ -6,9 +6,11 @@ import Home from "./components/home/Home"
 import Nav from "./components/layout/Navbar"
 import Routes from "./components/routing/Routes"
 
+import setAuthToken from './utils/setAuthToken'
 import "react-toastify/dist/ReactToastify.css";
 
 import { toast } from "react-toastify";
+import { loadUser } from './actions/auth';
 
 
 // Redux
@@ -18,24 +20,39 @@ import store from './store'
 toast.configure();
 
 const App = () => {
-      const checkAuthenticated = async () => {
-      try {
-      const res = await fetch("http://localhost:3003/api/auth/verify", {
-          method: "POST",
-          headers: { jwt_token: localStorage.token }
-      });
 
-      const parseRes = await res.json();
+  useEffect(()=>{
+    if (localStorage.token) {
 
-      // parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
-      } catch (err) {
-        console.error(err.message);
-      }
-    };
+      setAuthToken(localStorage.token);
+    }
 
-    useEffect(() => {
-        checkAuthenticated();
-    }, []);
+    store.dispatch(loadUser());
+
+    // log user out from all tabs if they log out in one tab
+    window.addEventListener('storage', () => {
+      if (!localStorage.token) store.dispatch({ type: 'LOGOUT' });
+    });
+
+  },[])
+    //   const checkAuthenticated = async () => {
+    //   try {
+    //   const res = await fetch("http://localhost:3003/api/auth/verify", {
+    //       method: "POST",
+    //       headers: { jwt_token: localStorage.token }
+    //   });
+
+    //   const parseRes = await res.json();
+
+    //   // parseRes === true ? setIsAuthenticated(true) : setIsAuthenticated(false);
+    //   } catch (err) {
+    //     console.error(err.message);
+    //   }
+    // };
+
+    // useEffect(() => {
+    //     checkAuthenticated();
+    // }, []);
 
     // const [isAuthenticated, setIsAuthenticated] = useState(false);
 

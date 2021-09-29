@@ -12,6 +12,9 @@ export default function Header() {
                     <li><Search style={{width: 15}}/></li>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/add-post">Post</Link></li>
+                    <li>
+                        <Link to='/user/me'>me</Link>
+                    </li>
                 </ul>
             </div>
         </div>

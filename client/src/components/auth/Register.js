@@ -59,7 +59,7 @@ const Register = ({register}) => {
                 </div>
                 <div style={{ display:'flex', alignItems:'center', gap: 10, justifyContent:'flex-end'}}>
                     <span>
-                        <Link to="/">Sign in.</Link>
+                        <Link to="/">Don't have an account?</Link>
                     </span>
                     <input type="submit" value="Submit" />
                 </div>

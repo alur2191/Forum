@@ -9,7 +9,6 @@ const db = require('../../db')
 router.get("/", async (req,res) => {
     try {
         const results = await db.query("select * from posts")
-        console.log(results);
         res.status(200).json({
             status: "success",
             results: results.rows.length,
@@ -28,7 +27,6 @@ router.get("/", async (req,res) => {
 router.get("/:id", async (req,res) => {
     try {
         const results = await db.query(`select * from posts where id = $1`, [req.params.id])
-        console.log(results.rows[0]);
         res.status(200).json({
             status: "success",
             data:{ posts: results.rows[0] }     
@@ -44,7 +42,6 @@ router.get("/:id", async (req,res) => {
 // @access   
 
 router.post("/", async (req,res)=> {
-    console.log(`RESULT:${req.body}`);
     try {
         const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,CURRENT_TIMESTAMP) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id])
         
@@ -77,8 +74,6 @@ router.put("/:id", async (req,res) => {
     } catch (err) {
         
     }
-    console.log(req.params.id);
-    console.log(req.body);
     
 })
 

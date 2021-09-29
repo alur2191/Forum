@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import api from '../api/api'
+import api from '../utils/api'
 
 import {
     REGISTER_SUCCESS,
@@ -12,12 +12,12 @@ import {
 } from './types';
 
 // Load User
-export const loadUser = (data) => async dispatch => {
+export const loadUser = () => async dispatch => {
     try {
-
+        const res = await api.get("/auth/user");
         dispatch({
             type: USER_LOADED,
-            payload: data
+            payload: res.data
         });
     } catch (err) {
         dispatch({
@@ -29,7 +29,6 @@ export const loadUser = (data) => async dispatch => {
 // Register User
 export const register = (name,email,password) => async dispatch => {
     try {
-        console.log('running');
         const res = await api.post("/auth/register", {
             user_name: name,
             user_email: email,
@@ -70,10 +69,7 @@ export const signIn = (email, password) => async dispatch => {
         const res = await api.post("/auth/login", {
             user_email: email,
             user_password: password
-        });
-
-        
-        
+        })
         if (res.data.token) {
             localStorage.setItem("token", res.data.token);
             dispatch({

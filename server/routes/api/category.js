@@ -44,8 +44,6 @@ router.get("/:id", async (req,res) => {
 // @access   
 
 router.post("/", async (req,res)=> {
-    console.log(req.body);
-    console.log('running');
     try {
         const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,CURRENT_TIMESTAMP) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id])
         console.log(results.rows[0]);
@@ -78,8 +76,6 @@ router.put("/:id", async (req,res) => {
     } catch (err) {
         
     }
-    console.log(req.params.id);
-    console.log(req.body);
     
 })
 

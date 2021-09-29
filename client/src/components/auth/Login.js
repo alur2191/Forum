@@ -17,7 +17,7 @@ const Login = ({signIn}) => {
 
     const onSubmitForm = e => {
         e.preventDefault();
-        console.log('clicked');
+        
         signIn(email,password)
     };
 

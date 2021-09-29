@@ -4,10 +4,11 @@ import { useParams, useHistory, Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import { getPost } from '../../actions/post';
 import Description from '../category/Description'
+import User from '../user/User'
 import { ArrowUp,ArrowDown } from 'react-feather';
 import { Bold, Italic, Link as LinkIcon, Code} from 'react-feather';
 
-import api from '../../api/api'
+import api from '../../utils/api'
 
 const Post = ({ getPost, post: { post,loading  } }) => {
     const [edit,setEdit] = useState(false)
@@ -58,10 +59,10 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                             {edit ? <textarea style={{width:"98%",}} value={postBody} onChange={(e) => {setPostBody(e.target.value)}}/> : <p>{post.body}</p>}
                             {edit ? <div style={{display:'flex', justifyContent:'flex-end'}}><button style={{color:'black',backgroundColor:'transparent ',border:'none'}} onClick={toggleEdit}>Cancel</button> <input type="submit" value="Edit" onClick={post.body === postBody ? toggleEdit :handleSubmit}/></div>:
                             <div>
-                                <a>Comments</a>
-                                <a>Share</a>
-                                <a>Save</a>
-                                <a onClick={toggleEdit}>Edit</a>
+                                <Link to={'/'}>Comments</Link>
+                                <Link to={'/'}>Share</Link>
+                                <Link to={'/'}>Save</Link>
+                                <Link to={'/'} onClick={toggleEdit}>Edit</Link>
                             </div>}
                     </div>
                 </div>

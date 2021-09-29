@@ -1,5 +1,5 @@
 import React, {useState,Fragment} from 'react'
-import api from '../../api/api'
+import api from '../../utils/api'
 import {addPost} from '../../actions/post' 
 import Description from '../category/Description'
 import { Bold, Italic, Link as LinkIcon, Code} from 'react-feather';
