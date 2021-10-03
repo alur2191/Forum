@@ -1,10 +1,11 @@
 import React,{useEffect} from 'react'
 import {connect} from 'react-redux'
-import {getUser} from '../../actions/profile' 
+import {getCurrentUser} from '../../actions/profile' 
 
-const User =({getUser,loading, profile}) => {
+const CurrentUser =({getCurrentUser,loading, profile}) => {
     useEffect(()=>{
-        getUser('Dandan')
+        getCurrentUser()
+        
     },[])
     
     return (
@@ -19,4 +20,4 @@ const mapStateToProps = state => ({
     profile: state.profile.profile
 });
 
-export default connect(mapStateToProps, { getUser })(User);
+export default connect(mapStateToProps, { getCurrentUser })(CurrentUser);

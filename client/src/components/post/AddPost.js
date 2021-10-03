@@ -1,23 +1,27 @@
-import React, {useState,Fragment} from 'react'
+import React, {useState,useEffect,Fragment} from 'react'
 import api from '../../utils/api'
+import {connect} from 'react-redux'
 import {addPost} from '../../actions/post' 
 import Description from '../category/Description'
 import { Bold, Italic, Link as LinkIcon, Code} from 'react-feather';
+import {getCurrentUser} from '../../actions/profile' 
 
-export default function AddPost() {
+const AddPost = ({getCurrentUser,profile}) => {
+    useEffect(()=>{
+        getCurrentUser()
+    },[])
+
     const [title,setTitle] = useState('')
     const [body,setBody] = useState('')
     
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            
             const response = await api.post("/posts/", {
                 title,
                 body,
-                user_id: 1,
                 category_id: 1,
-                created_at: '2021-09-11 01:07:30.815655'
+                author: profile.user_id
             });
             addPost(response.data.data.post);
         } catch (err) {
@@ -26,8 +30,9 @@ export default function AddPost() {
     };
     return (
         <Fragment>
-        <div >
+        <div > 
             <div className="main-body">
+                <h2>{profile.user_name}</h2>
                 <form className="add-post" action="">
                     <div>
                         <input value={title} type="text" placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
@@ -58,3 +63,10 @@ export default function AddPost() {
         </Fragment>
     )
 }
+
+const mapStateToProps = state => ({
+    isAuthenticated: state.auth,
+    profile: state.profile.profile
+});
+
+export default connect(mapStateToProps, { getCurrentUser })(AddPost);

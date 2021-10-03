@@ -14,7 +14,7 @@ import {
 // Load User
 export const loadUser = () => async dispatch => {
     try {
-        const res = await api.get("/auth/user");
+        const res = await api.get("/auth/u");
         dispatch({
             type: USER_LOADED,
             payload: res.data

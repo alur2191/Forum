@@ -13,7 +13,10 @@ export default function Header() {
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/add-post">Post</Link></li>
                     <li>
-                        <Link to='/user/me'>me</Link>
+                        <Link to='/u/me'>me</Link>
+                    </li>
+                    <li>
+                        <Link to='/u/Dandan'>Random user</Link>
                     </li>
                 </ul>
             </div>

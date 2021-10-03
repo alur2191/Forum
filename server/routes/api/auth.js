@@ -60,7 +60,7 @@ router.post("/login", validation, async (req,res) => {
             return res.status(401).json("Email or password is incorrect")
         }
 
-        const token = jwtGenerator(user.rows[0].user_id)
+        const token = jwtGenerator(user.rows[0].user_name)
         
         res.json({token})
     } catch (err) {
@@ -72,7 +72,7 @@ router.post("/login", validation, async (req,res) => {
 // @desc     Get user with token
 // @access   Public
 
-router.get("/user", auth, async (req,res) => {
+router.get("/u", auth, async (req,res) => {
     try {
         const profile = await db.query("select user_name, user_email from users where user_id = $1", [req.user.id])
         //res.json(user)
