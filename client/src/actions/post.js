@@ -16,8 +16,7 @@ export const getPosts = (data) => async dispatch => {
         });
     } catch (err) {
         dispatch({
-        type: POST_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: POST_ERROR
         });
     }
 };
@@ -34,8 +33,7 @@ export const deletePost = id => async dispatch => {
         
     } catch (err) {
         dispatch({
-        type: POST_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: POST_ERROR
         });
     }
 };
@@ -51,8 +49,7 @@ export const addPost = data => async dispatch => {
         
     } catch (err) {
         dispatch({
-        type: POST_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: POST_ERROR
         });
     }
 };
@@ -66,8 +63,7 @@ export const getPost = (data) => async dispatch => {
         });
     } catch (err) {
         dispatch({
-        type: POST_ERROR,
-        payload: { msg: err.response.statusText, status: err.response.status }
+        type: POST_ERROR
         });
     }
 };

@@ -9,6 +9,7 @@ import {getCurrentUser} from '../../actions/profile'
 const AddPost = ({getCurrentUser,profile}) => {
     useEffect(()=>{
         getCurrentUser()
+
     },[])
 
     const [title,setTitle] = useState('')
@@ -17,12 +18,15 @@ const AddPost = ({getCurrentUser,profile}) => {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
+            console.log(profile);
             const response = await api.post("/posts/", {
                 title,
                 body,
                 category_id: 1,
-                author: profile.user_id
+                author: profile.user_name,
+                author_id: profile.user_id
             });
+            console.log(response.data.data.post);
             addPost(response.data.data.post);
         } catch (err) {
             console.log(err);

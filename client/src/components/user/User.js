@@ -2,9 +2,10 @@ import React,{useEffect} from 'react'
 import {connect} from 'react-redux'
 import {getUser} from '../../actions/profile' 
 
-const User =({getUser,loading, profile}) => {
+const User =({match,getUser,loading, profile}) => {
     useEffect(()=>{
-        getUser('Dandan')
+        console.log(match.params.username);
+        getUser(match.params.username)
     },[])
     
     return (

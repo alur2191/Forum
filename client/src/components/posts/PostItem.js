@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import { ArrowUp,ArrowDown } from 'react-feather';
 
-export default function PostItem({post: {id,title,body,created_at}}) {
+export default function PostItem({post: {id,title,body,created_at,author}}) {
     
     return (
         <div className="post main-body" style={{display:'grid', gridTemplateColumns:'40px 1fr', gridGap:'10px'}}>
@@ -13,7 +13,7 @@ export default function PostItem({post: {id,title,body,created_at}}) {
                 <ArrowDown/>
             </div>
             <div>
-                <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • {created_at}</div>
+                <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by <Link to={`/u/${author}`}>{author}</Link> • {created_at}</div>
                     <h3><Link to={`/posts/${id}`}>{title}</Link></h3>
                     <p>{body}</p>
                     <div>
