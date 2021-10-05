@@ -4,7 +4,6 @@ import { useParams, useHistory, Link} from "react-router-dom";
 import { connect } from 'react-redux'
 import { getPost } from '../../actions/post';
 import Description from '../category/Description'
-import User from '../user/User'
 import { ArrowUp,ArrowDown } from 'react-feather';
 import { Bold, Italic, Link as LinkIcon, Code} from 'react-feather';
 

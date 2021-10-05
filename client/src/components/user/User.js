@@ -4,14 +4,15 @@ import {getUser} from '../../actions/profile'
 
 const User =({match,getUser,loading, profile}) => {
     useEffect(()=>{
-        console.log(match.params.username);
         getUser(match.params.username)
     },[])
     
-    return (
+    return loading || profile === null ? (
+        <span>LOADING</span>
+    ) : (
         <div>
             <span>test</span> 
-            <h2>{loading===null ? <span>Loading</span> : profile.user_name}</h2>
+            <h2>{profile.user_name}</h2>
         </div>
     )
 }
