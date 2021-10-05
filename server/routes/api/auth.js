@@ -68,14 +68,14 @@ router.post("/login", validation, async (req,res) => {
     }
 })
 
-// @route    POST api/auth/login
+// @route    GET api/auth/
 // @desc     Get user with token
 // @access   Public
 
-router.get("/u", auth, async (req,res) => {
+router.get("/", auth, async (req,res) => {
     try {
-        const profile = await db.query("select user_name, user_email from users where user_id = $1", [req.user.id])
-        //res.json(user)
+        const profile = await db.query("select user_name, user_email from users where user_name = $1", [req.user.id])
+        res.json(profile)
     } catch (err) {
         res.status(500).send("Server Error")
     }
