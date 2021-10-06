@@ -1,10 +1,10 @@
 # Forum
 
-Forum built with PERN stack. Personal project under development.
+Forum built with PERN stack. Currently under development.
 
 ## Setup
 
-*Prerequisites:  PostgreSQL, NPM.*
+*Dependencies:  PostgreSQL, NPM.*
 
 #### Database Setup
 
