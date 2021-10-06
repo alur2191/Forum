@@ -4,11 +4,11 @@ Forum built with PERN stack. Personal project under development.
 
 ## Setup
 
-Prerequisites: You will need to install PostgreSQL, create a table and name it. You will also need NPM installed.
+*Prerequisites:  PostgreSQL, NPM.*
 
 #### Database Setup
 
-Open the created table in SQL Shell terminal. Open the "*queries.sql*" file in the *root folder*. Copy content of the file to the shell.
+Create a table in PostgreSQL and open the created table in SQL Shell terminal. Open the "*queries.sql*" file in the repo *root folder*. Copy content of the file to the shell and execute it.
 
 #### Environment variables
 
