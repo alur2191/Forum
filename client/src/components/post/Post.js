@@ -18,8 +18,7 @@ const Post = ({ getPost, post: { post,loading  } }) => {
     useEffect(()=> {
         const fetchData = async () => {
             try {
-                const res = await api.get(`/posts/${id}`)
-                getPost(res.data.data.posts)
+                getPost(id)
             }catch(err){
                 console.log(err);
             }
@@ -53,7 +52,7 @@ const Post = ({ getPost, post: { post,loading  } }) => {
                         <ArrowDown/>
                     </div>
                     <div>
-                        <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by testUser • {post.created_at}</div>
+                        <div style={{fontSize:'0.9rem', color:'#4c4d52'}}>Posted by <Link to={`/u/${post.author}`}>{post.author}</Link> • {post.created_at}</div>
                             <h3><Link to={`/posts/${id}`}>{post.title}</Link></h3>
                             {edit ? <textarea style={{width:"98%",}} value={postBody} onChange={(e) => {setPostBody(e.target.value)}}/> : <p>{post.body}</p>}
                             {edit ? <div style={{display:'flex', justifyContent:'flex-end'}}><button style={{color:'black',backgroundColor:'transparent ',border:'none'}} onClick={toggleEdit}>Cancel</button> <input type="submit" value="Edit" onClick={post.body === postBody ? toggleEdit :handleSubmit}/></div>:

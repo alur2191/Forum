@@ -10,6 +10,7 @@ const Sidebar = ({isAuthenticated}) => {
     return (
         <div  className="sidebar">
             {isAuthenticated ? null: <Login />}
+            <Register />
             <PopularPosts/>
         </div>
     )

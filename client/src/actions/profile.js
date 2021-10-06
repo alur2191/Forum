@@ -10,7 +10,6 @@ export const getCurrentUser = () => async (dispatch) => {
     
     try {
         const res = await api.get('/profile/u/me');
-        console.log(res.data.rows[0]);
         dispatch({
             type: GET_USER,
             payload: res.data.rows[0]

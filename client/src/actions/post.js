@@ -1,18 +1,21 @@
+import api from '../utils/api'
 
 import {
     GET_POSTS,
     POST_ERROR,
     DELETE_POST,
     ADD_POST,
-    GET_POST
+    GET_POST,
+    EDIT_POST
 } from './types';
 
 // Get posts
-export const getPosts = (data) => async dispatch => {
+export const getPosts = () => async dispatch => {
+    const res = await api.get("/posts")
     try {
         dispatch({
         type: GET_POSTS,
-        payload: data
+        payload: res.data.data.posts
         });
     } catch (err) {
         dispatch({
@@ -39,26 +42,53 @@ export const deletePost = id => async dispatch => {
 };
 
 // Add post
-export const addPost = data => async dispatch => {
-    try {        
-        dispatch({
-        type: ADD_POST,
-        payload: data
+export const addPost = (title,body,category,author,author_id) => async dispatch => {
+    try {
+        console.log(title,
+            body,
+            category,
+            author,
+            author_id);
+        const res = await api.post("/posts/", {
+            title,
+            body,
+            category,
+            author,
+            author_id
         });
-
-        
-    } catch (err) {
         dispatch({
-        type: POST_ERROR
+            type: ADD_POST,
+            payload: res.data.data.post
+        });
+    } catch (err) {
+        console.log(err);
+        dispatch({
+            type: POST_ERROR
         });
     }
 };
 
 // Get post
-export const getPost = (data) => async dispatch => {
+export const getPost = id => async dispatch => {
+    
+    try {
+        const res = await api.get(`/posts/${id}`)
+        dispatch({
+            type: GET_POST,
+            payload: res.data.data.posts
+        });
+    } catch (err) {
+        dispatch({
+        type: POST_ERROR
+        });
+    }
+};
+
+// Edit post
+export const editPost = (data) => async dispatch => {
     try {
         dispatch({
-        type: GET_POST,
+        type: EDIT_POST,
         payload: data
         });
     } catch (err) {
@@ -67,3 +97,4 @@ export const getPost = (data) => async dispatch => {
         });
     }
 };
+

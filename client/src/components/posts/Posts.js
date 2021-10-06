@@ -1,5 +1,4 @@
 import React, {Fragment,useEffect} from 'react';
-import api from '../../utils/api'
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/post';
 import PostItem from './PostItem'
@@ -8,8 +7,7 @@ const Posts = ({ getPosts, post: { posts } }) => {
     useEffect(()=> {
         const fetchData = async () => {
             try {
-                const res = await api.get("/posts")
-                getPosts(res.data.data.posts);
+                getPosts();
             }catch(err){
                 console.log(err);
             }

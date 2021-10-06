@@ -2,17 +2,17 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db')
 
-// @route    GET api/posts
-// @desc     Get all posts
+// @route    GET api/categories
+// @desc     Get all categories
 // @access   
 
 router.get("/", async (req,res) => {
     try {
-        const results = await db.query("select * from posts")
+        const results = await db.query("select * from categories")
         res.status(200).json({
             status: "success",
             results: results.rows.length,
-            data:{ posts: results.rows, }        
+            data:{ categories: results.rows, }        
         })
     } catch (err) {
         console.log(err);
@@ -20,17 +20,17 @@ router.get("/", async (req,res) => {
     
 })
 
-// @route    GET api/posts/:id
-// @desc     Get post by ID
+// @route    GET api/categories/:id
+// @desc     Get category by ID
 // @access   
 
 router.get("/:id", async (req,res) => {
     try {
-        const results = await db.query(`select * from posts where id = $1`, [req.params.id])
+        const results = await db.query(`select * from categories where id = $1`, [req.params.id])
         
         res.status(200).json({
             status: "success",
-            data:{ posts: results.rows[0] }     
+            data:{ categories: results.rows[0] }     
         })
     } catch (err) {
         
@@ -38,18 +38,18 @@ router.get("/:id", async (req,res) => {
     
 })
 
-// @route    POST api/posts
-// @desc     Create a post
+// @route    POST api/categories
+// @desc     Create a category
 // @access   
 
 router.post("/", async (req,res)=> {
     try {
-        const results = await db.query("INSERT INTO posts (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,CURRENT_TIMESTAMP) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id])
+        const results = await db.query("INSERT INTO categories (title,body,user_id,category_id,created_at) values ($1,$2,$3,$4,CURRENT_TIMESTAMP) returning *",[req.body.title,req.body.body,req.body.user_id,req.body.category_id])
         
         res.status(201).json({
             status: "success",
             data: {
-                posts: results.rows[0]
+                categories: results.rows[0]
             }
         })
     } catch (err) {
@@ -58,18 +58,18 @@ router.post("/", async (req,res)=> {
     
 })
 
-// @route    PUT api/posts/like/:id
-// @desc     Like a post
+// @route    PUT api/categories/like/:id
+// @desc     Like a category
 // @access   
 
 router.put("/:id", async (req,res) => {
 
     try {
-        const results = await db.query("UPDATE posts SET body = $1 where id = $2 returning *", [req.body.body,req.params.id])
+        const results = await db.query("UPDATE categories SET body = $1 where id = $2 returning *", [req.body.body,req.params.id])
         res.status(200).json({
             status: "success",
             data: {
-                posts: results.rows[0]
+                categories: results.rows[0]
             }
         })
     } catch (err) {
@@ -78,13 +78,13 @@ router.put("/:id", async (req,res) => {
     
 })
 
-// @route    DELETE api/posts/:id
-// @desc     Delete a post
+// @route    DELETE api/categories/:id
+// @desc     Delete a category
 // @access   
 
 router.delete("/:id", async (req,res) => {
     try {
-        const results =  db.query("DELETE FROM posts where id = $1", [req.params.id])
+        const results =  db.query("DELETE FROM categories where id = $1", [req.params.id])
         res.status(204).json({
             status:"success"
         })
