@@ -4,8 +4,6 @@ Forum built with PERN stack. Currently under development.
 
 ## Setup
 
-*Dependencies:  PostgreSQL, NPM.*
-
 #### Database Setup
 
 Create a table in PostgreSQL and open the created table in SQL Shell terminal. Open the `queries.sql` file in the repo *root folder*. Copy content of the file to the shell and execute it.
